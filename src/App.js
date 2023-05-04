@@ -93,7 +93,7 @@ function App() {
             <Thead>
                 <Tr>
                   <Th>Antigen</Th>
-                  <Th>Concentration</Th>
+                  <Th>Concentration (kU/I)</Th>
                   <Th isNumeric>Reaction</Th>
                 </Tr>
             </Thead>
