@@ -33,7 +33,7 @@ import { useState } from 'react';
 
 const excel = require('exceljs'); 
 const workbook = new excel.Workbook();
-var initial_data = [[], [ ,1, 2, 3], [ ,4, 5, 2], [ ,7, 8, 5]];
+var initial_data = [[], [ ,"Antigen 1", "Conc. 1", 3], [ ,"Antigen 2", "Conc. 2", 2], [ ,"Antigen 3", "Conc. 3", 5]];
 var color_array = ["green", "green", "orange", "red", "red"]
 var uploaded_data;
 
@@ -47,7 +47,7 @@ function handlefile(e){
       uploaded_data = sheet.getSheetValues()
   })
 }
-
+//hello world
 function App() {
 
   const [livedata, setlivedata] = useState(initial_data)
@@ -59,14 +59,14 @@ function App() {
 
     }
     else if(ind === 1){
-      return <td>{col}</td>
+      return <td style={{border: '1px solid'}}>{col}</td>
     }
     else if(ind === 2){
-      return <td>{col}</td>
+      return <td style={{border: '1px solid'}}>{col}</td>
     }
     else {
       let ratingcolor = color_array[col - 1]
-      return <td><Rating initialRating={col} readonly
+      return <td style={{border: '1px solid'}}><Rating initialRating={col} readonly
       emptySymbol={<FontAwesomeIcon icon={emptycircle} color='black'/>}
       fullSymbol={[<FontAwesomeIcon icon={fullcircle} color={ratingcolor}/>]}
       /></td>
@@ -81,20 +81,20 @@ function App() {
     )
   }
   return (
-    <ChakraProvider theme={theme}>
+    <ChakraProvider theme={theme} >
       
       <VStack height='100%'>
-      <Heading >Allergy report</Heading>
-      <Center><Box><Input type='file' onChange={handlefile}/></Box></Center>
-      <Button onClick={refreshtable}>Refresh table</Button>
+      <Heading color='blue'>Allergy report</Heading>
+      <Center><Box><Input type='file' onChange={handlefile} /></Box></Center>
+      <Button colorScheme='blue' onClick={refreshtable}>Refresh table</Button>
 
-        <TableContainer>
-          <Table>
+        <TableContainer >
+          <Table style={{border: '1px solid', borderRadius:'10%'}}>
             <Thead>
                 <Tr>
-                  <Th>Antigen</Th>
-                  <Th>Concentration (kU/I)</Th>
-                  <Th isNumeric>Reaction</Th>
+                  <Th style={{border: '1px solid'}}>Antigen</Th>
+                  <Th style={{border: '1px solid'}}>Concentration (kU/I)</Th>
+                  <Th style={{border: '1px solid'}} isNumeric>Reaction</Th>
                 </Tr>
             </Thead>
             <Tbody>
@@ -102,7 +102,8 @@ function App() {
             </Tbody>
           </Table>
         </TableContainer>
-
+        <Button colorScheme='blue'>Download as PDF</Button>
+        <Button colorScheme='blue'>Send to customer as PDF</Button>
 
 
       </VStack>
